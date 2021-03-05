@@ -12,3 +12,8 @@ export interface MenuType {
   navLink: string;
   navText: string;
 }
+
+export interface StoreType {
+  currency: string;
+  cart: ProductType[];
+}

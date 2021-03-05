@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "../components/Product";
 import ProductService from "../services/ProductService";
-import { ProductType } from "../types";
+import { ProductType, StoreType } from "../types";
 import { connect } from "react-redux";
 import Row from "../components/Row";
 
@@ -37,10 +37,10 @@ class ProductList extends React.Component<PListProps> {
   }
 }
 // connect(how to connect)(what to connect/component)
-const mapStoreDataToProps = (storeData: string) => {
+const mapStoreDataToProps = (storeData: StoreType) => {
   return {
     // prop_name : store_data
-    currencyCode: storeData,
+    currencyCode: storeData.currency,
   };
 };
 export default connect(mapStoreDataToProps)(ProductList);

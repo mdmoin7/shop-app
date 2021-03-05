@@ -6,7 +6,7 @@ interface IAction extends Action {
 }
 // reducer(store_data, action)
 // store_data : state : initialise
-function currencyReducer(storeData = "INR", action: IAction) {
+function currencyReducer(storeData: string = "INR", action: IAction) {
   switch (action.type) {
     case CurrencyActions.ActionTypes.UPDATE_CURRENCY:
       // return the updated currency code
