@@ -13,7 +13,13 @@ export interface MenuType {
   navText: string;
 }
 
+export interface UserSessionType {
+  user: object;
+  error: string;
+}
+
 export interface StoreType {
   currency: string;
   cart: ProductType[];
+  userSession: UserSessionType;
 }
