@@ -1,10 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Currency from "./components/Currency";
-import ProductList from "./containers/ProductList";
-import Demo from "./containers/Demo";
-import Checkout from "./containers/Checkout";
 import ThemeSwitch from "./components/ThemeSwitch";
 import { ThemeContext } from "./context";
 import AppRouter from "./AppRouter";
@@ -13,6 +9,8 @@ import Header from "./containers/Header";
 import { Provider } from "react-redux";
 import appStore from "./store";
 import Footer from "./components/Footer";
+import LoginButtons from "./components/LoginButtons";
+
 class App extends React.Component {
   state = { selectedCurrency: "INR", theme: "light" };
   render() {
@@ -21,6 +19,7 @@ class App extends React.Component {
       <Provider store={appStore}>
         <BrowserRouter>
           <Header theme={theme}>
+            <LoginButtons />
             <ThemeSwitch changeTheme={(theme) => this.setState({ theme })} />
             <Currency theme={theme} />
           </Header>

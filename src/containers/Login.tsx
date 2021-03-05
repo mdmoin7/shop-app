@@ -6,13 +6,13 @@ import Textbox from "../components/Textbox";
 import UserService from "../services/UserService";
 import UserActions from "../store/actions/UserActions";
 import { StoreType } from "../types";
-import { Redirect } from "react-router-dom";
+import { Redirect, RouteChildrenProps } from "react-router-dom";
 
 type LoginProps = {
   signinSuccess: (user: object) => void;
   signinError: (error: string) => void;
   isAuthenticated: boolean;
-};
+} & RouteChildrenProps;
 type LoginState = { email: string; password: string };
 
 class Login extends React.Component<LoginProps, LoginState> {
@@ -33,7 +33,12 @@ class Login extends React.Component<LoginProps, LoginState> {
 
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to={"/"} />;
+      let lastPage = "/"; // by default home page
+      const state: any = this.props.location.state;
+      if (state && state.from) {
+        lastPage = state.from; // previous page url
+      }
+      return <Redirect to={lastPage} />;
     }
 
     return (

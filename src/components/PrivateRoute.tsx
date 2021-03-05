@@ -6,6 +6,7 @@ import { StoreType } from "../types";
 const PrivateRoute: React.FC<RouteProps> = ({ component, ...rest }) => {
   const store = useStore<StoreType>();
   const auth = !!store.getState().userSession.user;
+
   const RoutedComponent = component as React.ComponentClass;
   return (
     <Route
@@ -17,7 +18,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ component, ...rest }) => {
           <Redirect
             to={{
               pathname: "/login",
-              state: { from: location },
+              state: { from: location.pathname },
             }}
           />
         )
