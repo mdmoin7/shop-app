@@ -32,6 +32,7 @@ class Product extends React.Component<ProductProps> {
   }
   render() {
     const { pData, wishlist, selectedCurrency } = this.props;
+
     return (
       <Column colSize={3}>
         <div className="p-4 text-center my-2 shadow-sm">
