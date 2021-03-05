@@ -33,3 +33,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   };
 };
 export default connect(null, mapDispatchToProps)(Currency);
+
+// function test(a,b)
+// test(null,1)

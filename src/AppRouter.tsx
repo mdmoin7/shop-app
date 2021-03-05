@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
+import Checkout from "./containers/Checkout";
 import Demo from "./containers/Demo";
 import ProductList from "./containers/ProductList";
 
@@ -12,6 +13,7 @@ const AppRouter: React.FC<RProps> = (props) => {
       <Switch>
         <Route path={"/"} component={Demo} exact={true} />
         <Route path={"/products"} component={ProductList} />
+        <Route path={"/checkout/:transaction_id"} component={Checkout} />
         {/* 404 ROUTE : always at the bottom */}
         <Route component={ErrorPage} />
       </Switch>

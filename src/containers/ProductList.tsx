@@ -4,8 +4,14 @@ import ProductService from "../services/ProductService";
 import { ProductType, StoreType } from "../types";
 import { connect } from "react-redux";
 import Row from "../components/Row";
+import { Dispatch } from "redux";
+import CartActions from "../store/actions/CartActions";
+import { RouteChildrenProps } from "react-router-dom";
 
-type PListProps = { currencyCode: string };
+type PListProps = {
+  currencyCode: string;
+  addItem: (p: ProductType) => void;
+} & RouteChildrenProps;
 type PListState = { pList: ProductType[] };
 
 class ProductList extends React.Component<PListProps> {
@@ -29,7 +35,10 @@ class ProductList extends React.Component<PListProps> {
             key={value.productId}
             selectedCurrency={this.props.currencyCode}
             pData={value}
-            btnClick={(e) => console.log("button clicked cart", e)}
+            btnClick={(e) => {
+              this.props.addItem(value); // add to cart
+              this.props.history.push("/cart"); // navigate to cart
+            }}
           />
         ))}
       </Row>
@@ -43,4 +52,10 @@ const mapStoreDataToProps = (storeData: StoreType) => {
     currencyCode: storeData.currency,
   };
 };
-export default connect(mapStoreDataToProps)(ProductList);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    addItem: (prod: ProductType) => dispatch(CartActions.addToCart(prod)),
+    removeItem: (id: number) => dispatch(CartActions.removeItem(id)),
+  };
+};
+export default connect(mapStoreDataToProps, mapDispatchToProps)(ProductList);

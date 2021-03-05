@@ -6,5 +6,13 @@
     {
         "navLink": "/products",
         "navText": "Products"
+    },
+    {
+        "navLink": "/checkout/1000",
+        "navText": "Checkout"
+    },
+    {
+        "navLink": "/checkout/1000?email=test@mail.com",
+        "navText": "Checkout (query string)"
     }
 ]

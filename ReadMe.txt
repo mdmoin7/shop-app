@@ -509,4 +509,13 @@ src
     store
         actions
         reducers
+            index.ts : reducers combiner file
         index.ts : store config file
+
+npm install --save-dev redux-devtools-extension
+
+
+ROUTER : component
+injects/adds 3 props to the component loaded by the router
+
+history : navigation

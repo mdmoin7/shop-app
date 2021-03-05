@@ -17,6 +17,8 @@ class Checkout extends React.Component<CProps, CState> {
     console.log("form submit", this.state, this.emailInput.current?.value);
   }
   render() {
+    // this.props.match.params : PATH PARAMS
+    // this.props.location.search : QUERY PARAMS
     return (
       <div>
         <form onSubmit={(ev) => this.submitData(ev)}>
