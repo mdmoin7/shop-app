@@ -1,0 +1,10 @@
+[
+    {
+        "navLink": "/",
+        "navText": "Home"
+    },
+    {
+        "navLink": "/products",
+        "navText": "Products"
+    }
+]
