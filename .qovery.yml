@@ -1,0 +1,11 @@
+---
+application:
+  name: "shop-app"
+  project: "react-shop-app"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-shop-app"
+  routes:
+  - application_name: "shop-app"
+    paths:
+    - "/*"
