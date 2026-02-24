@@ -1,13 +1,20 @@
-import Axios from "axios";
+import ApiService from "./ApiService";
 
 const login = (email: string, password: string) => {
-  const apiKey = "AIzaSyDqxqa-4XEB-J-cDrzR-ZZdxQ7E5YPuROw";
-  const endPoint =
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const url =
     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
     apiKey;
   const data = { email, password, returnSecureToken: true };
-  return Axios.post(endPoint, data);
+  return ApiService.post(url, data);
 };
 
-const UserService = { login };
-export default UserService;
+const register = (email: string, password: string) => {
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const url =
+    "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + apiKey;
+  const data = { email, password, returnSecureToken: true };
+  return ApiService.post(url, data);
+};
+
+export default { login, register };

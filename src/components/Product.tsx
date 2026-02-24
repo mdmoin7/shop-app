@@ -1,57 +1,56 @@
-import React from "react";
+import { Link } from "react-router";
 import { ProductType } from "../types";
-import Column from "./Column";
+import Card from "./Card";
+import ProductStock from "./ProductStock";
 import ImageWithFallback from "./ImageWithFallback";
 import ProductPrice from "./ProductPrice";
 
-type ProductProps = {
-  pData: ProductType;
-  wishlist?: boolean;
-  btnClick: (a: string) => void;
-  selectedCurrency: string;
+type Props = {
+  pdata: ProductType;
+  btnClick: () => void;
 };
 
-class Product extends React.Component<ProductProps> {
-  renderStock(stock: boolean) {
-    const testData = "abc";
-    if (stock) {
-      return (
-        <button
-          onClick={() => this.props.btnClick(testData)}
-          className="btn btn-sm btn-success w-100"
-        >
-          Add to Cart
-        </button>
-      );
-    }
-    return (
-      <button className="btn btn-sm btn-danger w-100" disabled>
-        Out of Stock
-      </button>
-    );
-  }
-  render() {
-    const { pData, wishlist, selectedCurrency } = this.props;
+function Product({ pdata: data, btnClick }: Props) {
+  // const { currency } = useCurrency();
+  // const currency = useSelector((state: RootState) => state.currency);
 
-    return (
-      <Column colSize={3}>
-        <div className="p-4 text-center my-2 shadow-sm">
-          <ImageWithFallback source={pData.productImage} />
-          {/* <img src={pData.productImage} className="img-thumbnail" /> */}
-          <h4 className="my-2">{pData.productName}</h4>
-          {/* <h4>
-          {selectedCurrency} {pData.productPrice}
-        </h4> */}
+  return (
+    <Card variant="elevated" padding="md" className="flex flex-col">
+      <Link
+        to={`/details/${data.productId}`}
+        className="group block overflow-hidden rounded-lg"
+      >
+        <ImageWithFallback
+          src={data.productImage}
+          alt={data.productName}
+          className="
+            w-full h-48 object-cover
+            transition-transform duration-300
+            group-hover:scale-105
+          "
+          containerClassName="w-full h-48"
+          fallback={<span>📦 Image Unavailable</span>}
+        />
+      </Link>
+
+      <Card.Body>
+        <div className="flex flex-col gap-2 mt-4">
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-1">
+            {data.productName}
+          </h2>
+
           <ProductPrice
-            code={selectedCurrency}
-            productPrice={pData.productPrice}
-            salePrice={pData.salePrice}
+            productPrice={Number(data.productPrice)}
+            productSalePrice={Number(data.productSalePrice)}
           />
-          {/* <button>Add to {wishlist ? "Wishlist" : "Cart"}</button> */}
-          {this.renderStock(pData.productStock)}
         </div>
-      </Column>
-    );
-  }
+      </Card.Body>
+
+      <Card.Footer>
+        <ProductStock stock={data.productStock} click={btnClick} />
+      </Card.Footer>
+    </Card>
+  );
 }
+
 export default Product;

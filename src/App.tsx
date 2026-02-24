@@ -1,36 +1,35 @@
-import React from "react";
-import "./App.css";
-import Currency from "./components/Currency";
 import ThemeSwitch from "./components/ThemeSwitch";
-import { ThemeContext } from "./context";
-import AppRouter from "./AppRouter";
-import { BrowserRouter } from "react-router-dom";
-import Header from "./containers/Header";
-import { Provider } from "react-redux";
-import appStore from "./store";
+import { ThemeProvider } from "./context/ThemeContext";
+import { CurrencyProvider } from "./context/CurrencyContext";
+import Currency from "./components/Currency";
+import AppRouter from "./Routes";
+import { BrowserRouter } from "react-router";
+import Menu from "./components/Menu";
 import Footer from "./components/Footer";
+import CartBadge from "./components/CartBadge";
 import LoginButtons from "./components/LoginButtons";
 
-class App extends React.Component {
-  state = { selectedCurrency: "INR", theme: "light" };
-  render() {
-    const { theme } = this.state;
-    return (
-      <Provider store={appStore}>
-        <BrowserRouter>
-          <Header theme={theme}>
-            <LoginButtons />
-            <ThemeSwitch changeTheme={(theme) => this.setState({ theme })} />
-            <Currency theme={theme} />
-          </Header>
-          <ThemeContext.Provider value={theme}>
-            <AppRouter />
-          </ThemeContext.Provider>
-          <Footer theme={theme} />
-        </BrowserRouter>
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <CurrencyProvider>
+        <ThemeProvider>
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+            <Menu>
+              <Currency />
+              <ThemeSwitch />
+              <CartBadge />
+              <LoginButtons />
+            </Menu>
+            <main className="pt-6 mt-10">
+              <AppRouter />
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </CurrencyProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

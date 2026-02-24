@@ -1,0 +1,228 @@
+Tools
+VS Code
+Node JS
+
+npm create vite
+my-app
+react
+typescript
+
+Components : user-defined html tags
+
+- naming convention : PascalCase
+- one component definition per file
+- name of file & component name should be same
+
+src
+containers
+ProductList.tsx
+components
+Product.tsx
+Demo.tsx
+
+Designing a component
+
+- smallest reusable entity
+- single responsibility principle
+
+Product
+
+- display product details
+- fetch product details from API
+- add to cart functionality
+- navigate to cart page
+- waitlist
+
+Page 1
+Product : add to cart
+
+Page 2
+Product : add to cart & navigate to cart page
+
+Page 3
+Product : add to cart/waitlist
+
+DESIGN PATTERN : SMART-DUMB COMPONENTS
+smart : logical
+dumb : presentational
+
+App
+ProductList : SMART : plist
+Product : DUMB : data
+
+Component Communication : PARENT<->CHILD
+PARENT => CHILD : PROPS (properties)
+CHILD => PARENT : PROPS (events)
+<img src="value" onclick="func()"/>
+
+A : 100 A : 100
+B : 101 D : 103 : render
+C : 102 B : 101
+C : 102
+
+bit.ly/2Ee7HOL
+
+src
+services
+ProductService.ts
+types.ts
+
+Components
+
+- props : data exchange
+- state : ui updates
+  - state should always be initialised
+  - state should always be updated immutably
+
+Components
+stateless : default (no state), no lifecycle
+stateful : useState (hooks)
+
+component : component will re-render even if the value of state has not changed
+purecomponent (default) : A component re-renders whenever its state/props change
+
+Component lifecycle phases : useEffect
+
+- mounting : on load (once)
+- updating : on every state change
+- unmounting : on unload (once)
+
+FORMS
+controlled
+uncontrolled
+
+UI
+wrapper
+
+Passing data between the Components
+- props : PARENT-CHILD
+- context : V16
+- redux : global state management
+
+Context
+- provider : single
+- consumer : multiple
+only the descendants of the provider can be a consumer
+
+App : provider
+    Currency : data
+    ThemeSwitch : data
+    ProductList
+        Product : Currency
+            Card : use (consumer)
+
+
+components : reusable ui elements (SMART-DUMB)
+hooks : reusable logics
+
+src
+    hooks
+      useProducts.ts
+
+solution
+- js : fetch
+- 3rd party : axios : npm i axios
+
+abc.com/api/v1.2/products
+abc.com/api/v1.2/cart
+
+request => interceptor => server => interceptor => response
+
+App
+    Static : header, footer, menu
+    Dynamic : router
+
+Route : npm i react-router
+- defining the routes
+- navigations : Link, useNavigate
+- private/protected routes
+- passing params : url/route params
+    - path params (required) : useParams : details
+    - query params (optional) : useSearchParams : sorting, filtering, searching, pagination
+
+state persistence
+- browser storage (long) : localStorage, sessionStorage
+- url/route params (short)
+
+Lazy & Suspense : code splitting
+
+npm run build
+index.js ~ 273.55 kB => 234.32 kB
+
+products : 1mb ~1s
+cart : 1mb ~1s
+
+orders : 1mb ~1s
+
+Eager loading : any functionality that is commonly required
+Lazy loading : any functionality that is needed on demand
+
+Forms: 
+npm install formik
+npm install yup
+
+Data
+- pagination
+- virtual scrolling
+
+A => B : re-render
+    B => A : re-render
+        A => A : no re-render
+
+Memoization : memorizing the previous result
+useMemo : memorizing the previous result of a function : memoizing data
+useCallback : memorizing the function definition : memoizing functions
+
+
+state : local scope
+context : provider scope
+redux : global scope
+
+FLUX & REDUX
+Flux : concept : data flow pattern
+Redux : implementation of flux
+
+Flux
+- unidirectional data flow
+
+store : data repository
+tv : data
+person : component
+
+action => dispatcher => store => component
+npm install @reduxjs/toolkit
+npm install react-redux
+
+src
+    store
+        index.ts : store config file
+        slices
+            currencySlice.ts
+            cartSlice.ts
+            userSlice.ts
+
+Redux
+1. create store : once/app
+2. provide the store to entire application
+3. create slices 
+4. connecting the component to the store
+    - useSelector : to get data from the store
+    - useDispatch : to dispatch actions
+
+REDUX FLOW
+on every action dispatched => all the reducers are invoked
+                            => reducers try to find a matching action based on action dispatched
+                                => if match found => reducer returns updated data
+                                => if no match found => reducer returns previous data
+                                    => store updates the data
+                                        => all the components subscribed (useSelector) to the store are executed again
+                                            => if data is updated, component re-renders
+
+src
+    services
+        UserService.ts
+
+Environment variables : sensitive data
+
+
+

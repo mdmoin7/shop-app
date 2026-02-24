@@ -1,10 +1,9 @@
-import Axios from "axios";
+import { ProductType } from "../types";
+import ApiService from "./ApiService";
 
-const getProducts = () => {
-  const endPoint =
+// services/ProductService.ts
+export const getProducts = () => {
+  const url =
     "https://raw.githubusercontent.com/mdmoin7/Random-Products-Json-Generator/master/products.json";
-  return Axios.get(endPoint);
+  return ApiService.get<ProductType[]>(url);
 };
-
-const ProductService = { getProducts };
-export default ProductService;

@@ -1,19 +1,10 @@
-body {
-  font-family: "Raleway", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.btn:focus,
-.btn:active:focus,
-.btn.active:focus {
-  outline: none;
-  box-shadow: none;
-}
-body.bg-light {
-  background-color: white !important;
-}
-
-body.bg-dark .shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.075) !important;
+@import "tailwindcss";
+@layer components {
+  .input {
+    @apply w-full px-4 py-2 rounded-md
+    border border-gray-300 dark:border-gray-600
+    bg-white dark:bg-gray-800
+    text-gray-800 dark:text-white
+    focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
 }

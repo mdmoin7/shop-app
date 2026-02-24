@@ -1,29 +1,17 @@
-import React from "react";
-import { useStore } from "react-redux";
-import { Redirect, Route, RouteProps } from "react-router-dom";
-import { StoreType } from "../types";
+import { PropsWithChildren } from "react";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router";
+import { RootState } from "../store";
 
-const PrivateRoute: React.FC<RouteProps> = ({ component, ...rest }) => {
-  const store = useStore<StoreType>();
-  const auth = !!store.getState().userSession.user;
+// PrivateRoute.tsx
+function PrivateRoute({ children }: PropsWithChildren) {
+  const isLoggedIn = useSelector((state: RootState) => !!state.user);
 
-  const RoutedComponent = component as React.ComponentClass;
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth ? (
-          <RoutedComponent />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location.pathname },
-            }}
-          />
-        )
-      }
-    />
-  );
-};
+  if (isLoggedIn) {
+    return <>{children}</>;
+  } else {
+    return <Navigate to="/login" />;
+  }
+}
+
 export default PrivateRoute;

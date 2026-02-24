@@ -1,20 +1,38 @@
-import React, { useState } from "react";
+// components/ImageWithFallback.tsx
+import { ImgHTMLAttributes, useState } from "react";
 
-type Props = { source: string };
+type Props = {
+  fallback?: React.ReactNode;
+  containerClassName?: string;
+} & ImgHTMLAttributes<HTMLImageElement>;
 
-const ImageWithFallback: React.FC<Props> = ({ source }) => {
-  let [imgSrc, updateImage] = useState(source);
+function ImageWithFallback({
+  fallback,
+  containerClassName = "",
+  className = "",
+  ...imgProps
+}: Props) {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div
+        className={`
+          flex items-center justify-center
+          bg-gray-100 dark:bg-gray-700
+          text-gray-400 dark:text-gray-500
+          text-sm font-medium
+          ${containerClassName}
+        `}
+      >
+        {fallback ?? "Image Unavailable"}
+      </div>
+    );
+  }
+
   return (
-    <img
-      src={imgSrc}
-      className="img-thumbnail"
-      alt="some image data"
-      onError={() =>
-        updateImage(
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"
-        )
-      }
-    />
+    <img {...imgProps} onError={() => setError(true)} className={className} />
   );
-};
+}
+
 export default ImageWithFallback;
