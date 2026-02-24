@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
 // import { useCurrency } from "../context/CurrencyContext";
-import { changeCurrency } from "../store/slices/currencySlice";
 import { useCurrency } from "../context/CurrencyContext";
 
 function Currency() {

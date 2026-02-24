@@ -10,7 +10,7 @@ const currencySlice = createSlice({
     // state : current data related to the slice inside the store
     // action : contains action related information to be given to the store by the component
     // every action must return the updated data back to the store
-    changeCurrency: (state, action) => {
+    changeCurrency: (_state, action) => {
       return action.payload; // payload is an optional data that can be sent to the store
       // by the component
     },

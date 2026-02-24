@@ -1,7 +1,4 @@
 import { Route, Routes } from "react-router";
-import Demo from "./Demo";
-// import ProductList from "./containers/ProductList";
-import Checkout from "./containers/Checkout";
 import ErrorPage from "./containers/ErrorPage";
 import PrivateRoute from "./components/PrivateRoute";
 import ProductDetail from "./containers/ProductDetail";

@@ -4,7 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: null,
   reducers: {
-    createSession: (state, action) => {
+    createSession: (_state, action) => {
       return action.payload;
     },
     clearSession: () => {
