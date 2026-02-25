@@ -55,7 +55,7 @@ export function CurrencyProvider({ children }: any) {
 
       try {
         const res = await fetch(
-          `https://api.exchangerate.host/live?access_key=1d532fe3a8ce8dc9925b8d8a79307305&source=INR&currencies=INR,USD,EUR,GBP&format=1`,
+          `https://api.exchangerate.host/live?access_key=${import.meta.env.VITE_EXCHANGE_RATE_API_KEY}&source=INR&currencies=INR,USD,EUR,GBP&format=1`,
         );
         const data = await res.json();
 

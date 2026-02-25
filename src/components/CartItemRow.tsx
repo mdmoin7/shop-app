@@ -3,6 +3,7 @@ import { addItem, decrementItem, removeItem } from "../store/slices/cartSlice";
 import Button from "./Button";
 import ProductPrice from "./ProductPrice";
 import ImageWithFallback from "./ImageWithFallback";
+import { toggleWishlist } from "../store/slices/wishlistSlice";
 
 type Props = {
   item: any; // keeping store untouched
@@ -37,6 +38,16 @@ function CartItemRow({ item }: Props) {
               showDiscount={false}
             />
           </div>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => {
+              dispatch(toggleWishlist(item.product));
+              dispatch(removeItem(item.product.productId));
+            }}
+          >
+            Move to Wishlist
+          </Button>
         </div>
 
         {/* Controls */}
@@ -61,10 +72,10 @@ function CartItemRow({ item }: Props) {
 
           <Button
             size="sm"
-            variant="danger"
+            variant="ghost"
             onClick={() => dispatch(removeItem(item.product.productId))}
           >
-            Remove
+            🗑️
           </Button>
         </div>
       </div>

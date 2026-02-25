@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import useProducts from "../hooks/useProducts";
 import { addItem } from "../store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import ProductSkeleton from "../components/ProductSkeleton";
 
 function ProductList() {
   const navigate = useNavigate();
@@ -48,7 +49,9 @@ function ProductList() {
       </div>
 
       {/* Grid */}
-      {products.length > 0 ? (
+      {loading ? (
+        Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)
+      ) : products.length > 0 ? (
         <>
           <div
             className="

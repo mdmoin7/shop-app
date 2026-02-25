@@ -5,12 +5,14 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import currencyReducer from "./slices/currencySlice";
 import cartReducer from "./slices/cartSlice";
 import userReducer from "./slices/userSlice";
+import wishlistReducer from "./slices/wishlistSlice";
 
 const rootReducer = combineReducers({
   // data : reducer
   currency: currencyReducer,
   cart: cartReducer,
   user: userReducer,
+  wishlist: wishlistReducer,
 });
 
 const persistConfig = {

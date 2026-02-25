@@ -23,30 +23,31 @@ export default function useProducts(options?: Options) {
 
   // Fetch once
   useEffect(() => {
-    let mounted = true;
+    // let mounted = true;
 
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const { data } = await getProducts();
-        if (mounted) setProducts(data);
-      } catch {
-        if (mounted) setError("Failed to load products");
+        setProducts(data);
+      } catch (e) {
+        setError("Failed to load products");
       } finally {
-        if (mounted) setLoading(false);
+        setLoading(false);
       }
     };
 
     fetchProducts();
 
     return () => {
-      mounted = false;
+      // mounted = false;
     };
   }, []);
 
   // Filter
   const filtered = useMemo(() => {
     return products.filter((p) =>
-      p.productName.toLowerCase().startsWith(search.trim().toLowerCase()),
+      p.productName.toLowerCase().includes(search.trim().toLowerCase()),
     );
   }, [products, search]);
 
