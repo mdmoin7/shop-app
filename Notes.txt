@@ -224,5 +224,48 @@ src
 
 Environment variables : sensitive data
 
+Error Boundary : npm i react-error-boundary
+
+A
+----------------
+    B
+        C
+            D
+----------------
+    E
+        F
+            G
+                H
 
 
+
+    github.com/mdmoin7/shop-app
+
+    src
+        app
+            App.tsx
+            store.ts
+            index.css
+            Routes.tsx
+        theme
+            components
+                ThemeSwitch.tsx
+            ThemeContext.tsx
+        product
+            components
+            pages
+        ui
+            components
+                Button
+                Card
+                Header
+                Footer
+        cart
+            components
+            containers
+            pages
+            hooks
+            services
+            store
+            types
+            

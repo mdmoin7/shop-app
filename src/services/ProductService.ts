@@ -1,4 +1,4 @@
-import { ProductType } from "../types";
+import { ProductType } from "../products/types";
 import ApiService from "./ApiService";
 
 // services/ProductService.ts
